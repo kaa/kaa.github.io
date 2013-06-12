@@ -1,0 +1,6 @@
+--- 
+tags: 
+title: 0.00098% of capacity used
+layout: post
+---
+<p>I don&#8217;t know if Sampo Pankki are trying the wrong way to become &#8220;paperless&#8221;. They today sent us identification information for their online banking interface on a CD. It contained a single .html file with a single line of text containing the codes. The file was 674 bytes.</p>

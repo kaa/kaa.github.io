@@ -1,0 +1,8 @@
+--- 
+tags: 
+title: |-
+  from ISODATA, a novel method of data analysis and pattern classification
+  (authors Geoffrey H. Ball and David J. Hall, 1965)
+layout: post
+---
+<img src="/tumblr_files/tumblr_mnakwav15N1qzn3emo1_1280.png"/>
