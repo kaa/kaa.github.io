@@ -1,46 +1,48 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ page.title }}</title>
-        <meta name="viewport" content="width=device-width">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
+    <title>Starter Template for Bootstrap</title>
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/main.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/style/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/style/style.css" rel="stylesheet">
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/static/style/syntax.css">
+  </head>
 
-    </head>
-    <body>
+  <body>
+    <div class="container">
+      <div>
+        <h1 class="title"><a href="/">{{ site.name }}</a></h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
 
-        <div class="container">
-          <div class="site">
-            <div class="header">
-              <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-              <a class="extra" href="/">home</a>
-            </div>
+      {{ content }}
 
-                {{ content }}
+    </div><!-- /.container -->
 
-            <div class="footer">
-              <div class="contact">
-                <p>
-                  Your Name<br />
-                  What You Are<br />
-                  your@email.com
-                </p>
-              </div>
-              <div class="contact">
-                <p>
-                  <a href="http://github.com/yourusername/">github.com/yourusername</a><br />
-                  <a href="http://twitter.com/yourusername/">twitter.com/yourusername</a><br />
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> <!-- /container -->
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Your Name<br />
+          What You Are<br />
+          your@email.com
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://github.com/yourusername/">github.com/yourusername</a><br />
+          <a href="http://twitter.com/yourusername/">twitter.com/yourusername</a><br />
+        </p>
+      </div>
+    </div>
 
-    </body>
+  </body>
 </html>
