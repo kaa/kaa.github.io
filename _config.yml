@@ -1,2 +1,5 @@
 name: I say, I say
 pygments: true
+paginate: 5
+paginate_path: "blog/p:num"
+encoding: UTF-8

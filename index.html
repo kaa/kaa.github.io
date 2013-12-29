@@ -3,11 +3,15 @@ layout: default
 title: I say, I say
 ---
 
-<div id="home">
-  <h1>Most recent posts</h1>
-  <ul class="posts">
-    {% for post in site.posts limit:10 %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
+{% for post in paginator.posts %}
+<article>
+	<header>
+		<h1>{{ post.title }}</h1>
+		<span>{{ post.date | date_to_string }}</span>
+	</header>
+	{{ post.content }}
+</article>
+{% endfor %}
+
+{% include pager.html %}
+
