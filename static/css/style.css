@@ -18,6 +18,9 @@ body > header strong { color: black; font-weight: normal; }
 body > header a { color: black; text-decoration: none; border-bottom: 1px solid #bbb }
 body > header p > span { display: block; }
 
+.highlight { overflow: auto; }
+.highlight pre { margin: 0; }
+
 article { }
 article > header { margin-bottom: 1.4em }
 article > header > h1 { padding-bottom: 0.725em; }
