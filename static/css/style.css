@@ -18,7 +18,9 @@ body > header strong { color: black; font-weight: normal; }
 body > header a { color: black; text-decoration: none; border-bottom: 1px solid #bbb }
 body > header p > span { display: block; }
 
-.highlight { overflow: auto; }
+code { font-size: 1.1em;}
+
+.highlight { overflow: auto; background: #fafafa; border: 1px solid #eee; padding: 0.5em }
 .highlight pre { margin: 0; }
 
 article { }
