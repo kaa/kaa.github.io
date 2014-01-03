@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<canvas width="128" height="96" id="screen"></canvas>
+<style type="text/css">
+	#screen {
+		width: 512px; 
+		height: 384px; 
+		image-rendering:optimizeSpeed;             /* Legal fallback */
+		image-rendering:-moz-crisp-edges;          /* Firefox        */
+		image-rendering:-o-crisp-edges;            /* Opera          */
+		image-rendering:-webkit-optimize-contrast; /* Safari         */
+		image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+		image-rendering:crisp-edges;               /* CSS4 Proposed  */
+		image-rendering:pixelated;                 /* CSS4 Proposed  */
+		-ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+		border: 1px solid #ddd;
+	}
+	</style>
+<script type="text/javascript">
+var context;
+
+var keys = {};
+
+window.addEventListener("keydown",function(evt){
+	if(evt.keyCode===38)
+		keys.UP = 1;
+	else if(evt.keyCode==39)
+		keys.RIGHT = 1;
+	else if(evt.keyCode==40)
+		keys.DOWN = 1;
+	else if(evt.keyCode==37)
+		keys.LEFT = 1;
+	else
+		return;
+	evt.preventDefault();
+});
+window.addEventListener("keyup",function(evt){
+	if(evt.keyCode===38)
+		keys.UP = 0;
+	else if(evt.keyCode==39)
+		keys.RIGHT = 0;
+	else if(evt.keyCode==40)
+		keys.DOWN = 0;
+	else if(evt.keyCode==37)
+		keys.LEFT = 0;
+	else
+		return;
+	evt.preventDefault();
+});
+
+load("./screens.gif");
+function load(src) {
+	var canvas = document.getElementById("screen");
+	canvas.webkitImageSmoothingEnabled = false;
+	var image = new Image();
+	image.src = src;
+	image.onload = function() {
+		var can = document.createElement("canvas");
+		can.width = 1024;
+		can.height = 1024;
+		var ctx = can.getContext("2d");
+		ctx.drawImage(image, 0, 0);
+		init(ctx);
+	};
+}
+
+function init(resources) {
+	var screen = document.getElementById("screen").getContext("2d"),
+		buffer = screen.createImageData(128,96);
+	context = {
+		sprites: [{	
+			x: 64, y: 80, ox: 16, oy: 31, 
+			bitmap: resources.getImageData(128, 96,  32, 32)
+		}],
+		screen: screen,
+		buffer: buffer,
+		room: {
+			display: resources.getImageData(  0,  0, 128, 96),
+			control: resources.getImageData(128,  0, 128, 96),
+			depth:   resources.getImageData(  0, 96, 128, 96),
+		}
+	};
+	run();
+}
+
+function run() {
+	blit(
+		context.room.display, 0, 0, 
+		context.buffer, 0, 0,
+		128, 96
+	);
+	(function loop() {
+		clearSprites();
+		live();
+		drawSprites();
+		context.screen.putImageData(context.buffer, 0, 0);
+		window.requestAnimationFrame(loop);
+	})();
+}
+
+function live() {
+	var avatar = context.sprites[0],
+		ctl = context.room.control,
+		dx = 0, dy = 0;
+	if(keys.DOWN)
+		dy = 1;
+	else if(keys.UP)
+		dy = -1;
+	else if(keys.RIGHT)
+		dx = 1;
+	else if(keys.LEFT)
+		dx = -1;
+	var dp = (avatar.x+dx+(avatar.y+dy)*ctl.width)*4;
+	if(ctl.data[dp+0]===0 && ctl.data[dp+1]===255 && ctl.data[dp+2]==0) {
+		avatar.x += dx;
+		avatar.y += dy;
+	}
+}
+
+function clearSprites() {
+	for(var i=0; i<context.sprites.length; i++) {
+		var sprite = context.sprites[i];
+		blit(
+			context.room.display, sprite.x-sprite.ox, sprite.y-sprite.oy,
+			context.buffer, sprite.x-sprite.ox, sprite.y-sprite.oy,
+			sprite.bitmap.width, sprite.bitmap.height
+		);
+	}
+}
+function drawSprites() {
+	for(var i=0; i<context.sprites.length; i++) {
+		var sprite = context.sprites[i];
+		blit(
+			sprite.bitmap, 0, 0,
+			context.buffer, sprite.x-sprite.ox, sprite.y-sprite.oy,
+			sprite.bitmap.width, sprite.bitmap.height,
+			context.room.depth, Math.max(1, (sprite.y-64)/32*256)
+		);
+	}
+}
+
+
+function blit(src,sx,sy,dst,dx,dy,w,h,depth,dz) {
+	var src_d = src.data,
+		dst_d = dst.data,
+		dpt_d = depth ? depth.data : null,
+		sp = (sx+sy*src.width)*4,
+		dp = (dx+dy*dst.width)*4;
+	for(var i=h-1; i>=0; i--) {
+		for(var j=w-1; j>=0; j--) {
+			if( (src_d[sp+0]!==255 || src_d[sp+1]!==0 || src_d[sp+2]!==255 ) &&
+				(!dpt_d || dpt_d[dp+0]<dz) ) 
+			{
+				dst_d[dp+0] = src_d[sp+0];
+				dst_d[dp+1] = src_d[sp+1];
+				dst_d[dp+2] = src_d[sp+2];
+				dst_d[dp+3] = 255;
+			}
+			sp+=4; dp+=4;
+		}
+		sp+=(src.width-w)*4;
+		dp+=(dst.width-w)*4;
+	}
+}
+</script>
+</body>
+</html>
