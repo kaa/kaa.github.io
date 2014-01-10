@@ -4,15 +4,22 @@ body {
 }
 body { font-size:100%; line-height:1.25; }
 h1, h2, h3 { margin-top:0; margin-bottom:0; }
-h1 { font-size:1.5em; padding:1.45833em 0; }
+h { font-size:1.5em; padding:1.45833em 0; }
 h2 { font-size:1.33333em; padding:1.25em 0; }
 h3 { font-size:1.16667em; padding:1.51786em 0; }
 
-body { position: relative; max-width: 720px; margin: 0 auto; padding: 0 220px; }
-body > header { position: absolute; top: 0; left: 20px; width: 178px; }
+body { position: relative; max-width: 720px; margin: 0 auto; padding: 2em 220px 2em 220px; }
+body > header { position: absolute; top: 2em	; left: 20px; width: 178px; }
 
 body > header { color: #888; }
-body > header h1 { padding-bottom: 0; }
+body > header img { 
+	display: block;
+	border: 1px solid #ccc;
+	padding: 5px;
+	margin: 0;
+	background: white;
+}
+body > header h1 { padding-bottom: 0; margin: 0.2em 0;}
 body > header p { font-size: 0.9em; line-height: 1.3em }
 body > header strong { color: black; font-weight: normal; }
 body > header a { color: black; text-decoration: none; border-bottom: 1px solid #bbb }
@@ -23,24 +30,26 @@ code { font-size: 1.1em;}
 .highlight { overflow: auto; background: #fafafa; border: 1px solid #eee; padding: 0.5em }
 .highlight pre { margin: 0; }
 
-article { }
-article > header { margin-bottom: 1.4em }
-article > header > h1 { padding-bottom: 0.725em; }
-article > header > span { color: #888; }
-article img { max-width: 100%; }
+.post { }
+.post > header { margin-bottom: 1.4em }
+.post > header > h1 { padding-bottom: 0.725em; }
+.post > header > h1 a { color: #333; text-decoration: none; }
+.post > header > span { color: #888; }
+.post img { max-width: 100%; }
 
-nav.pagination { padding: 3em 0 5em 0 }
+nav.pagination { padding: 3em 0 2em 0 }
 nav.pagination a { text-decoration: none; color: black }
 nav.pagination a.newer { float: left; }
 nav.pagination a.older { float: right; }
 
 @media all and (max-width: 1180px) {
-	body { padding: 0 20px 0 220px; }
+	body { padding: 2em 20px 2em 220px; }
 }
 @media all and (max-width: 700px) {
 	body { padding: 0 20px; }
 	body > header { position: static; width: auto; overflow: hidden; }
+	body > header img { display: none }
 	body > header h1 { float: left; }
-	body > header p { float: left; }
+	body > header p { float: left;	 }
 	body > header p > span { display: inline; }
 }

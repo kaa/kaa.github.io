@@ -4,9 +4,9 @@ title: I say, I say
 ---
 
 {% for post in paginator.posts %}
-<article>
+<article class="post">
 	<header>
-		<h1>{{ post.title }}</h1>
+		<h1><a href="{{post.url}}">{{ post.title }}</a></h1>
 		<span>{{ post.date | date_to_string }}</span>
 	</header>
 	{{ post.content }}
