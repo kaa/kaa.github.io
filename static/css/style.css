@@ -8,7 +8,7 @@ h { font-size:1.5em; padding:1.45833em 0; }
 h2 { font-size:1.33333em; padding:1.25em 0; }
 h3 { font-size:1.16667em; padding:1.51786em 0; }
 
-body { position: relative; max-width: 720px; margin: 0 auto; padding: 2em 220px 2em 220px; }
+body { position: relative; max-width: 720px; margin: 0 auto; padding: 0 220px 2em 220px; }
 body > header { position: absolute; top: 2em	; left: 20px; width: 178px; }
 
 body > header { color: #888; }
@@ -32,7 +32,7 @@ code { font-size: 1.1em;}
 
 .post { }
 .post > header { margin-bottom: 1.4em }
-.post > header > h1 { padding-bottom: 0.725em; }
+.post > header > h1 { padding-bottom: 0.725em; margin-top: 2em;}
 .post > header > h1 a { color: #333; text-decoration: none; }
 .post > header > span { color: #888; }
 .post img { max-width: 100%; }
