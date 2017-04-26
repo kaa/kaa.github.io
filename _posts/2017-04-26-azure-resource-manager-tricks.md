@@ -88,7 +88,7 @@ Using the toggles and nested deployments we can enable and disable resources con
       "template": {
         "$schema": "...",
         "contentVersion": "...",
-        "resources": "[concat(variables('defaultResources'),variables('yesNoResources)[variables('yesNoResourceToggle')])]'dns-',uniqueString(resourceGroup().id, deployment().name))]"
+        "resources": "[variables('yesNoResources)[variables('yesNoResourceToggle')]]"
       }
     }
   }]
