@@ -14,18 +14,18 @@ Here is how I used `systemd` to schedule a periodic polling of the current date 
 
 First I created a service `/media/state/units/tlsdatesync.service`.
 
-{% highlight ini %}
+```ini
 [Unit]
 Description=Synchronize time with tlsdate
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/tlsdate
-{% endhighlight %}
+```
 
 and a timer description, `/media/state/units/tlsdatesync.timer`
 
-{% highlight ini %}
+```ini
 [Unit]
 Description=Run tlsdate every five minutes
 
@@ -38,18 +38,18 @@ OnUnitActiveSec=5min
 
 [Install]
 WantedBy=local.target
-{% endhighlight %}
+```
 
 then I configured the service and timers, and enable the timer on startup,
 
-{% highlight bash %}
+```bash
 % sudo systemctl restart local-enable.service
 % sudo systemctl enable --runtime /media/state/units/tlsdatesync.timer
-{% endhighlight %}
+```
 
 I checked the timers status with `systemctl` which confirmed the timer was running
 
-{% highlight bash %}
+```bash
 % systemctl status tlsdatesync.timer
 tlsdatesync.timer - Runs tlsdated every five minutes
    Loaded: loaded (/media/state/units/tlsdatesync.timer; enabled-runtime)
@@ -57,4 +57,4 @@ tlsdatesync.timer - Runs tlsdated every five minutes
 
 Jan 01 22:47:23 localhost systemd[1]: Starting Runs tlsdated every five minutes.
 Jan 01 22:47:23 localhost systemd[1]: Started Runs tlsdated every five minutes.
-{% endhighlight %}
+```
