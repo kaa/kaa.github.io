@@ -10,7 +10,7 @@ I finally got around to posting my tiny roughly 700 byte minified templating eng
 
 It supports, automatic html encoding, attribute binding, iteration, conditionals and string interpolation, with a surprisingly powerful Knockout inspired syntax such as this.
 
-{% highlight html %}
+```html
 <a data-bind="href: blogUrl">Home</a> 
 <h1 data-bind="title"></h1>
 <p>
@@ -31,11 +31,11 @@ It supports, automatic html encoding, attribute binding, iteration, conditionals
     <p data-bind="?likes.length">Liked by <em data-bind="#likes,'{.} '"></em></p>
   </li>
 </ul>
-{% endhighlight %}
+```
 
 Using it is as simple as this
 
-{% highlight javascript %}
+```javascript
 var template = $("#template").html()
 var context = {
   admin: false,
@@ -57,6 +57,6 @@ var context = {
 var element = $(template)
   .smack(context)
   .appendTo(document.body);
-{% endhighlight %}
+```
 
 Check it out at [github.com/kaa/smack](https://github.com/kaa/smack) if you're interested.
